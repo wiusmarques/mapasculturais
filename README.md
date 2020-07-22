@@ -77,3 +77,37 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
   ```
   ubuntu@server# sudo apt-get install nginx
   ```
+  
+  ### Instale o gerenciador de dependências do PHP Composer
+  
+  ```
+  ubuntu@server# curl -sS https://getcomposer.org/installer | php
+  ```
+  ```
+  ubuntu@server# sudo mv composer.phar /usr/local/bin/composer.phar
+  ```
+  
+  ### Também é importante ter o pacote zip instalado no seu servidor. Ele é usado para gerar o pacote com os anexos enviados nas inscrições. Caso ainda não tenha:
+  
+  ```
+  sudo apt-get install zip unzip
+  ```
+  
+  ### No Ubuntu o executável do NodeJS se chama nodejs, porém para o correto funcionamento das bibliotecas utilizadas, o executável deve se chamar node. Para isto criamos um link simbólico com o comando abaixo
+  
+  ```
+  ubuntu@server# sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+  ```
+  ### Instalando os minificadores de código Javascript e CSS: uglify-js, uglifycss e autoprefixer
+  
+  ```
+  ubuntu@server# sudo npm install -g uglify-js2 uglifycss autoprefixer
+  ubuntu@server# sudo update-alternatives --install /usr/bin/uglifyjs uglifyjs /usr/bin/uglifyjs2 10
+  ```
+  
+  ### Instalando o SASS, utilizado para compilar os arquivos CSS
+  
+  ```
+  ubuntu@server# sudo gem install sass -v 3.4.22
+  ```
+_Obs.: Tivemos várias mudanças no método de instalação, caso queira você poderá consultar a documentação que foi utilizada como base (clicando aqui)[http://docs.mapasculturais.org/mc_deploy/]_
