@@ -34,10 +34,10 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
   ```ubuntu@server# sudo apt install nodejs ``` </br>
   
   ```ubuntu@server# nodejs -v ``` </br>
-  ```output: v12.18.3```
+  ```~ v12.18.3```
   
   ```ubuntu@server# npm -v ``` </br>
-  ```output: 6.14.6```
+  ```~ 6.14.6```
   
   Instale o postgresql e postgis: 
   
