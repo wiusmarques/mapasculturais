@@ -110,3 +110,28 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   ```
   ubuntu@server# sudo gem install sass -v 3.4.22
   ```
+# 3. Clonando o Repositório
+
+  #### Primeiro vamos criar o usuário que rodará a aplicação e que será proprietário do banco de dados, definindo sua home para /srv e colocando-o no grupo www-data:
+  
+  ```
+  ubuntu@server# sudo useradd -G www-data -d /srv/mapas -m mapas
+  ```
+  
+  #### Vamos clonar o repositório usando o usuário criando, então precisamos primeiro "logar" com este usuário:
+  
+  ```
+  ubuntu@server# sudo su - mapas
+  mapas@server$ git clone https://github.com/hacklabr/mapasculturais.git
+  ```
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
