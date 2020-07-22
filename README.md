@@ -1,6 +1,6 @@
 # Mapas Culturais Minas Gerais
 
-Este repositório irá armazenar as configurações necessárias para efetuas a instalaçao passo-a-passo da aplicação mapasculturais tendo como base a seguinte documentação http://docs.mapasculturais.org/mc_deploy/, em Minas Gerais tivemos que fazer algumas pequenas mudanças do tutorial original para que fosse possível a sua instalaçao.
+Este repositório irá armazenar as configurações necessárias para efetuas a instalaçao passo-a-passo da aplicação mapasculturais tendo como base esta [documentação](http://docs.mapasculturais.org/mc_deploy/), em Minas Gerais tivemos que fazer algumas mudanças do tutorial original para que fosse possível a sua instalaçao.
 
 # 1. Configuração da máquina ( EC2 amazon )
 
@@ -9,7 +9,7 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
  * 1GB RAM
  * SSD 30GB
 
-<i>Essa configuração de máquina foi criada apenas para efetuarmos os testes iniciais, o procedimento será o mesmo em sua máquina de produção, para ter acesso aos requisitos mínimos acesse [Este Link](https://github.com/mapasculturais/mapasculturais#hardware-requisitos-para-instala%C3%A7%C3%A3o)</i>
+_Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a primeira instalação, o procedimento será o mesmo em sua máquina de produção, para ter acesso aos requisitos mínimos acesse para rodar em produção acesse [este Link](https://github.com/mapasculturais/mapasculturais#hardware-requisitos-para-instala%C3%A7%C3%A3o)_
 
 # 2. Softwares Requeridos
 
@@ -110,4 +110,3 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
   ```
   ubuntu@server# sudo gem install sass -v 3.4.22
   ```
-_Obs.: Tivemos várias mudanças no método de instalação, caso queira você poderá consultar a documentação que foi utilizada como base (clicando aqui)[http://docs.mapasculturais.org/mc_deploy/]_
