@@ -13,34 +13,34 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
 
 # 2. Softwares Requeridos
 
-  Atualize os repositórios de referência de sua máquina:
+  ### Atualize os repositórios de referência de sua máquina:
   
-  ``` ubuntu@server# sudo apt-get update ```</br>
-  ``` ubuntu@server# sudo apt-get upgrade ```</br>
+    ``` ubuntu@server# sudo apt-get update ```</br>
+    ``` ubuntu@server# sudo apt-get upgrade ```
   
-  Instale as dependências diversas:
+  ### Instale as dependências diversas:
   
-  ``` ubuntu@server# sudo apt-get install git curl npm ruby2.5 ruby2.5-dev ``` </br>
+    ``` ubuntu@server# sudo apt-get install git curl npm ruby2.5 ruby2.5-dev ```
   
-  Atualizar referências para a versão de ruby 2.5:
+  ###  Atualizar referências para a versão de ruby 2.5:
   
-  ``` ubuntu@server# sudo update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.5 10 ``` </br>
-  ``` ubuntu@server# sudo update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.5 10 ``` </br>
+    ``` ubuntu@server# sudo update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.5 10 ``` </br>
+    ``` ubuntu@server# sudo update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.5 10 ``` </br>
   
-  Instale a versão stable mais nova do nodejs:
+  ### Instale a versão stable mais nova do nodejs:
   
-  ```ubuntu@server# sudo curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh ``` </br>
-  ```ubuntu@server# sudo bash nodesource_setup.sh  ``` </br>
-  ```ubuntu@server# sudo apt install nodejs ``` </br>
+    ```ubuntu@server# sudo curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh ``` </br>
+    ```ubuntu@server# sudo bash nodesource_setup.sh  ``` </br>
+    ```ubuntu@server# sudo apt install nodejs ``` </br>
   
-  ```ubuntu@server# nodejs -v ``` </br>
-  ```~ v12.18.3```
+    ```ubuntu@server# nodejs -v ``` </br>
+    ```~ v12.18.3```
   
-  ```ubuntu@server# npm -v ``` </br>
-  ```~ 6.14.6```
+    ```ubuntu@server# npm -v ``` </br>
+    ```~ 6.14.6```
   
-  Instale o postgresql e postgis: 
+  ###  Instale o postgresql e postgis: 
   
-  ``` root@server# apt-get install postgresql-10 postgresql-contrib postgis postgresql-10-postgis-2.4 postgresql-10-postgis-2.4-scripts ```
+    ``` root@server# apt-get install postgresql-10 postgresql-contrib postgis postgresql-10-postgis-2.4 postgresql-10-postgis-2.4-scripts ```
   
   
