@@ -24,12 +24,18 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
   
   ### Instale as dependências diversas:
   
-    ``` ubuntu@server# sudo apt-get install git curl npm ruby2.5 ruby2.5-dev ```
+  ```
+  ubuntu@server# sudo apt-get install git curl npm ruby2.5 ruby2.5-dev
+  ```
   
   ###  Atualizar referências para a versão de ruby 2.5:
   
-    ``` ubuntu@server# sudo update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.5 10 ``` </br>
-    ``` ubuntu@server# sudo update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.5 10 ``` </br>
+  ```
+  ubuntu@server# sudo update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.5 10
+  ```
+  ```
+  ubuntu@server# sudo update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.5 10
+  ```
   
   ### Instale a versão stable mais nova do nodejs:
   
