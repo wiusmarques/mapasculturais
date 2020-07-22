@@ -39,20 +39,36 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
   
   ### Instale a versão stable mais nova do nodejs:
   
-  ```ubuntu@server# sudo curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh ``` </br>
-  ```ubuntu@server# sudo bash nodesource_setup.sh  ``` </br>
-  ```ubuntu@server# sudo apt install nodejs ``` </br>
+  ```
+  ubuntu@server# sudo curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
+  ```
+  ```
+  ubuntu@server# sudo bash nodesource_setup.sh
+  ```
+  ```
+  ubuntu@server# sudo apt install nodejs
+  ```
 
   ### Verificando se foi instalada a versão mais recente do NodeJS e do NPM:
   
-  ```ubuntu@server# nodejs -v ``` </br>
-  ```~ v12.18.3```
+  ```
+  ubuntu@server# nodejs -v
+  ```
+  ```
+  ~ v12.18.3
+  ```
 
-  ```ubuntu@server# npm -v ``` </br>
-  ```~ 6.14.6```
+  ```
+  ubuntu@server# npm -v
+  ```
+  ```
+  ~ 6.14.6
+  ```
   
   ###  Instale o postgresql e postgis: 
   
-  ``` root@server# apt-get install postgresql-10 postgresql-contrib postgis postgresql-10-postgis-2.4 postgresql-10-postgis-2.4-scripts ```
+  ```
+  root@server# apt-get install postgresql-10 postgresql-contrib postgis postgresql-10-postgis-2.4 postgresql-10-postgis-2.4-scripts
+  ```
   
   
