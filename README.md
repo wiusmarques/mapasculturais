@@ -15,8 +15,12 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
 
   ### Atualize os repositórios de referência de sua máquina:
   
-    ``` ubuntu@server# sudo apt-get update ```
-    ``` ubuntu@server# sudo apt-get upgrade ```
+    ```
+    ubuntu@server# sudo apt-get update 
+    ```
+    ```
+    ubuntu@server# sudo apt-get upgrade
+    ```
   
   ### Instale as dependências diversas:
   
