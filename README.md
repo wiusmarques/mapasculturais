@@ -53,15 +53,11 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
   
   ```
   ubuntu@server# nodejs -v
-  ```
-  ```
   ~ v12.18.3
   ```
 
   ```
   ubuntu@server# npm -v
-  ```
-  ```
   ~ 6.14.6
   ```
   
