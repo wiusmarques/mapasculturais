@@ -33,8 +33,11 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
   ```ubuntu@server# sudo bash nodesource_setup.sh  ``` </br>
   ```ubuntu@server# sudo apt install nodejs ``` </br>
   
-  ```ubuntu@server# nodejs -v ``` ```output: v12.18.3``` </br>
-  ```ubuntu@server# npm -v ``` ```output: 6.14.6``` </br>
+  ```ubuntu@server# nodejs -v ``` </br>
+  ```output: v12.18.3```
+  
+  ```ubuntu@server# npm -v ``` </br>
+  ```output: 6.14.6```
   
   Instale o postgresql e postgis: 
   
