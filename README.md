@@ -1,4 +1,4 @@
-# mapasculturais
+# Mapas Culturais Minas Gerais
 
 Este repositório irá armazenar as configurações necessárias para efetuas a configuração passo-a-passo da aplicação mapasculturais tendo como base a seguinte documentação http://docs.mapasculturais.org/mc_deploy/, em Minas Gerais tivemos que fazer algumas pequenas mudanças do tutorial original para que fosse possível a sua instalaçao.
 
