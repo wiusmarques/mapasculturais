@@ -64,7 +64,16 @@ Este repositório irá armazenar as configurações necessárias para efetuas a 
   ###  Instale o postgresql e postgis: 
   
   ```
-  root@server# apt-get install postgresql-10 postgresql-contrib postgis postgresql-10-postgis-2.4 postgresql-10-postgis-2.4-scripts
+  ubuntu@server# apt-get install postgresql-10 postgresql-contrib postgis postgresql-10-postgis-2.4 postgresql-10-postgis-2.4-scripts
   ```
   
+  ###  Instale o php7.2, php7.2-fpm e extensões do php utilizadas no sistema
   
+  ``` 
+  ubuntu@server# sudo apt-get install php7.2 php7.2-gd php7.2-cli php7.2-json php7.2-curl php7.2-pgsql php-apcu php7.2-fpm imagemagick libmagickcore-dev libmagickwand-dev php7.2-imagick 
+  ```
+  ### Instale o nginx
+  
+  ```
+  ubuntu@server# sudo apt-get install nginx
+  ```
