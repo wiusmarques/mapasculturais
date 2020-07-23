@@ -70,8 +70,9 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   ####  Instale o php7.2, php7.2-fpm e extensões do php utilizadas no sistema
   
   ``` 
-  ubuntu@server# sudo apt-get install php7.2 php7.2-gd php7.2-cli php7.2-json php7.2-curl php7.2-pgsql php-apcu php7.2-fpm imagemagick libmagickcore-dev libmagickwand-dev php7.2-imagick 
+  ubuntu@server# sudo apt-get install php7.2 php7.2-gd php7.2-cli php7.2-json php7.2-curl php7.2-pgsql php-apcu php7.2-fpm imagemagick libmagickcore-dev libmagickwand-dev php7.2-imagick
   ```
+  
   #### Instale o nginx
   
   ```
@@ -124,12 +125,47 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   ubuntu@server# sudo su - mapas
   mapas@server$ git clone https://github.com/hacklabr/mapasculturais.git
   ```
+  #### Agora vamos colocar o repositório na branch master. Caso queira você poderá ver todas as versões dosponíveis [aqui](https://github.com/hacklabr/mapasculturais/releases)
   
+  ```
+  mapas@server$ cd mapasculturais
+  mapas@server$ git checkout master
+  mapas@server$ git pull origin master
+  ```
   
+  ####  Instale alguns pacotes que serão necessários para instalação das dependências do próximo passo
   
+  ```
+  ubuntu@server# sudo apt-get install php7.2-common php7.2-mbstring php7.2-xml php7.2-zip
+  ```
   
+  #### Agora vamos instalar as dependências de PHP utilizando o Composer.
   
+  ```
+  mapas@server$ cd ~/mapasculturais/src/protected/
+  mapas@server$ composer.phar install
+  ```
   
+# 3. Banco de Dados
+
+  #### Vamos voltar ao usuário root para criar o banco de dados.
+  
+  ```
+  mapas@server$ exit
+  ubntu@server$
+  ```
+  
+  #### Primeiro vamos criar o usuário no banco de dados com o mesmo nome do usuário do sistema
+  
+  ```
+  ubuntu@server# sudo -u postgres psql -c "CREATE USER mapas"
+  ```
+  
+  #### Agora vamos criar a base de dados para a aplicação com o mesmo nome do usuário
+  
+  ```
+  ubuntu@server# sudo -u postgres createdb --owner mapas mapas
+  ```
   
   
   
