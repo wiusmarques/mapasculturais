@@ -324,6 +324,5 @@ php_admin_value[display_errors] = 'stderr'
   ubuntu@server# sudo service nginx restart
   ubuntu@server# sudo service php7.2-fpm restart
   ```
-  
-  
-
+ 
+_A partir deste momento sua aplicação estará disponível para acesso utilizando a Autenticação Fake_
