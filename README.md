@@ -146,7 +146,7 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   mapas@server$ composer.phar install
   ```
   
-# 3. Banco de Dados
+# 4. Banco de Dados
 
   #### Vamos voltar ao usuário root para criar o banco de dados.
   
@@ -179,7 +179,7 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   ubuntu@server# sudo su - mapas
   mapas@server$ psql -f mapasculturais/db/schema.sql
   ```
-# 4. Configurações de instalação
+# 5. Configurações de instalação
   
   #### Primeiro crie um arquivo de configuração copiando o arquivo de template de configuração. Este arquivo está preparado para funcionar com este guia, utilizando o método de autenticação Fake.
   
@@ -203,3 +203,127 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   mapas@server$ mkdir mapasculturais/src/files
   mapas@server$ mkdir mapasculturais/private-files
   ```
+  
+# 6. Configuração do nginx
+  
+  #### Precisamos criar o virtual host do nginx para a aplicação. Para isto crie, como root, o arquivo /etc/nginx/sites-available/mapas.conf
+  
+  ```
+  mapas@server$ exit
+  ubuntu@server# sudo vi /etc/nginx/sites-available/mapas.conf
+  ```
+  
+  _Eu costumo utilizar o vi, mas você pode usar o vim, nano e afins para fazer a edição deste arquivo_
+  
+  #### Coloque o conteúdo abaixo dentro do arquivo /etc/nginx/sites-available/mapas.conf criado anteriormente: Muita atenção aqui, pois você precisará subistituir todos os "meu.dominio.gov.br" pelo seu domínio ou IP fixo dependendo de qual for o seu caso.
+  
+  ```
+  server {
+    set $site_name meu.dominio.gov.br;
+
+    listen *:80;
+    server_name meu.dominio.gov.br;
+    access_log   /var/log/mapasculturais/nginx.access.log;
+    error_log    /var/log/mapasculturais/nginx.error.log;
+
+    index index.php;
+    root  /srv/mapas/mapasculturais/src/;
+
+    location / {
+      try_files $uri $uri/ /index.php?$args;
+    }
+    
+    location ~ /files/.*\.php$ {
+      return 80;
+    }
+    
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|woff)$ {
+            expires 1w;
+            log_not_found off;
+    }
+
+    location ~ \.php$ {
+      try_files $uri =404;
+      include fastcgi_params;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      fastcgi_pass unix:/var/run/php/php7.2-fpm-$site_name.sock;
+      client_max_body_size 0;
+    }
+
+    charset utf-8;
+  }
+
+  server {
+    listen *:80;
+    server_name www.meu.dominio.gov.br;
+    return 301 $scheme://meu.dominio.gov.br$request_uri;
+  }
+  ```
+  
+  #### Feita a alteração no arquivo, salve!
+  
+  #### Crie o link para habilitar o virtual host
+  
+  ```
+  ubuntu@server# sudo ln -s /etc/nginx/sites-available/mapas.conf /etc/nginx/sites-enabled/mapas.conf
+  ```
+  
+  #### Remover o arquivo default da pasta /etc/nginx/sites-available/ e /etc/nginx/sites-enabled/
+  
+  ```
+  ubuntu@server# sudo rm /etc/nginx/sites-available/default
+  sudo rm /etc/nginx/sites-enabled/default
+  ```
+  
+  #### Configurações pool do php-fpm: Crie o arquivo /etc/php/7.2/fpm/pool.d/mapas.conf com o conteúdo abaixo: Muita atenção aqui, pois você precisará subistituir "meu.dominio.gov.br" pelo seu domínio ou IP fixo dependendo de qual for o seu caso.
+  
+  ```
+  ubuntu@server# sudo vi /etc/php/7.2/fpm/pool.d/mapas.conf
+  ```
+  
+  _Eu costumo utilizar o vi, mas você pode usar o vim, nano e afins para fazer a edição deste arquivo_
+  
+  ```
+  [mapas]
+listen = /var/run/php/php7.2-fpm-meu.dominio.gov.br.sock
+listen.owner = mapas
+listen.group = www-data 
+user = mapas
+group = www-data
+catch_workers_output = yes
+pm = dynamic
+pm.max_children = 10
+pm.start_servers = 1
+pm.min_spare_servers = 1
+pm.max_spare_servers = 3
+pm.max_requests = 500
+chdir = /srv/mapas
+; php_admin_value[open_basedir] = /srv/mapas:/tmp
+php_admin_value[session.save_path] = /tmp/
+; php_admin_value[error_log] = /var/log/mapasculturais/php.error.log
+; php_admin_flag[log_errors] = on
+php_admin_value[display_errors] = 'stderr'
+  ```
+  
+# 7. Concluindo
+  
+  #### Para finalizar, precisamos popular o banco de dados com os dados iniciais e executar um script que entre outras coisas compila e minifica os assets, otimiza o autoload de classes do composer e roda atualizações do banco.
+  
+  
+  ```
+  ubuntu@server# sudo su - mapas
+  mapas@server$ psql -f mapasculturais/db/initial-data.sql
+  mapas@server$ ./mapasculturais/scripts/deploy.sh
+  ```
+  
+  #### Reinicie os serviços do nginx e php7.2-fpm
+  
+  
+  ```
+  ubuntu@server# sudo service nginx restart
+  ubuntu@server# sudo service php7.2-fpm restart
+  ```
+  
+  
+
