@@ -326,3 +326,100 @@ php_admin_value[display_errors] = 'stderr'
   ```
  
 _A partir deste momento sua aplicação estará disponível para acesso utilizando a Autenticação Fake_
+
+
+# Instalação do certificado SSL com LetsEncrypt
+
+  ## Passo 1 — Instalando o Certbot
+  
+  #### Primeiro, adicione o repositório:
+
+  ```
+  ubuntu@server# sudo add-apt-repository ppa:certbot/certbot
+  ```
+
+  #### Você vai precisar pressionar ENTER para aceitar. Depois, atualize a lista de pacotes para pegar as novas informações de pacotes do repositório:
+
+  ```
+  ubuntu@server# sudo apt-get update
+  ```
+  #### E, finalmente, instale o pacote Nginx do Certbot com o apt-get:
+
+  ```
+  ubuntu@server# sudo apt-get install python-certbot-nginx
+  ```
+  
+  
+  ## Passo 2 — Confirmando a Configuração do Nginx
+  
+  #### Para verificar, abra o arquivo de bloco do servidor para o seu domínio usando o ```vi``` ou o seu editor de textos favorito:
+  
+  ```
+  ubuntu@server# sudo vi /etc/nginx/sites-available/mapas.conf
+  ```
+  
+  #### Verifique se todas as informações abaixo foram configuradas corretamente, já fizemos nas [etapas anteriores](https://github.com/wiusmarques/mapasculturais#6-configura%C3%A7%C3%A3o-do-nginx), iremos apenas conferir.
+  
+  ```
+  set $site_name meu.dominio.gov.br;
+  server_name  meu.dominio.gov.br;
+  server_name meu.dominio.gov.br;
+  return 301 $scheme://mapas.siapp.one$request_uri;
+  ```
+  
+  #### Depois de conferir o arquivo, saia do seu editor, e verifique a sintaxe da edição da sua configuração:
+  
+  ```
+  ubuntu@server# sudo nginx -t
+  ```
+  
+  #### Se você receber um erro, reabra o arquivo de bloco do servidor e verifique se há erros de digitação ou caracteres ausentes. Quando a sintaxe do seu arquivo de configuração estiver correta, recarregue o Nginx para carregar a nova configuração:
+  
+  ```
+  ubuntu@server# sudo systemctl reload nginx
+  ```
+  
+  ## Passo 3 — Permitindo HTTPS Através do Firewall
+  
+  _Cada servidor possuí sua particularidade, garanta que as portas 443(https) e 80(http) estejam liberadas no Firewall [Permitindo HTTPS Através do Firewall](https://www.digitalocean.com/community/tutorials/como-proteger-o-nginx-com-o-let-s-encrypt-no-ubuntu-18-04-pt) vá até o tópico Passo 3 — Permitindo HTTPS Através do Firewall caso esteja utilizando um servidor padrão, no meu caso estou utilizando AWS e por isso o procedimento é um pouco diferente_ 
+  
+  ## Passo 4 — Obtendo um Certificado SSL
+  
+  #### Obtendo o certificado
+  
+  ```
+  ubuntu@server# sudo certbot --nginx -d meu.dominio.gov.br
+  ```
+  
+  #### Se isso for bem sucedido, o certbot perguntará como você gostaria de definir suas configurações de HTTPS.
+  
+  ```
+  Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
+  -------------------------------------------------------------------------------
+  1: No redirect - Make no further changes to the webserver configuration.
+  2: Redirect - Make all requests redirect to secure HTTPS access. Choose this for
+  (...)
+  ```
+  
+  #### Escolha 1 para redirecionar não redirecionar o tráfego forçado para HTTPS e 2 para fazer com que todaas as requisições sejam forçadas para HTTPS
+  
+  #### Se isso for bem sucedido, o certibot irá exibir uma mensagem de sucesso:
+  
+  ```
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  Congratulations! You have successfully enabled https://mapas.siapp.one
+
+  You should test your configuration at:
+  (...)
+  ```
+  
+  ## Passo 5 — Verificando a Auto-Renovação do Certbot
+  
+  ```
+  ubuntu@server# sudo certbot renew --dry-run
+  ```
+  
+  
+  
+_Em uma das máquinas que fiz a instalação precisei reiniciar o serivdor inteiro para que o NGINX funcione corretamente.
+A configuração do SSL foi feita com base no seguinte [artigo](https://www.digitalocean.com/community/tutorials/como-proteger-o-nginx-com-o-let-s-encrypt-no-ubuntu-18-04-pt).
