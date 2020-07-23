@@ -25,16 +25,16 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   #### Instale as dependências diversas:
   
   ```
-  ubuntu@server# sudo apt-get install git curl npm ruby2.5 ruby2.5-dev
+  ubuntu@server# sudo apt-get install git curl npm ruby2.5 ruby2.5-dev -y
   ```
   
   ####  Atualizar referências para a versão de ruby 2.5:
   
   ```
-  ubuntu@server# sudo update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.5 10
+  ubuntu@server# sudo update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.5
   ```
   ```
-  ubuntu@server# sudo update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.5 10
+  ubuntu@server# sudo update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.5
   ```
   
   #### Instale a versão stable mais nova do nodejs:
@@ -46,7 +46,7 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   ubuntu@server# sudo bash nodesource_setup.sh
   ```
   ```
-  ubuntu@server# sudo apt install nodejs
+  ubuntu@server# sudo apt install nodejs -y
   ```
 
   #### Verificando se foi instalada a versão mais recente do NodeJS e do NPM:
@@ -64,13 +64,13 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   ####  Instale o postgresql e postgis: 
   
   ```
-  ubuntu@server# apt-get install postgresql-10 postgresql-contrib postgis postgresql-10-postgis-2.4 postgresql-10-postgis-2.4-scripts
+  ubuntu@server# sudo apt-get install postgresql-10 postgresql-contrib postgis postgresql-10-postgis-2.4 postgresql-10-postgis-2.4-scripts -y
   ```
   
   ####  Instale o php7.2, php7.2-fpm e extensões do php utilizadas no sistema
   
   ``` 
-  ubuntu@server# sudo apt-get install php7.2 php7.2-gd php7.2-cli php7.2-json php7.2-curl php7.2-pgsql php-apcu php7.2-fpm imagemagick libmagickcore-dev libmagickwand-dev php7.2-imagick
+  ubuntu@server# sudo apt-get install php7.2 php7.2-gd php7.2-cli php7.2-json php7.2-curl php7.2-pgsql php-apcu php7.2-fpm imagemagick libmagickcore-dev libmagickwand-dev php7.2-imagick -y
   ```
   
   #### Instale o nginx
@@ -131,12 +131,6 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   mapas@server$ cd mapasculturais
   mapas@server$ git checkout master
   mapas@server$ git pull origin master
-  ```
-  
-  ####  Instale alguns pacotes que serão necessários para instalação das dependências do próximo passo
-  
-  ```
-  ubuntu@server# sudo apt-get install php7.2-common php7.2-mbstring php7.2-xml php7.2-zip
   ```
   
   #### Agora vamos instalar as dependências de PHP utilizando o Composer.
@@ -273,10 +267,10 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   
   ```
   ubuntu@server# sudo rm /etc/nginx/sites-available/default
-  sudo rm /etc/nginx/sites-enabled/default
+  ubuntu@server# sudo rm /etc/nginx/sites-enabled/default
   ```
   
-  #### Configurações pool do php-fpm: Crie o arquivo /etc/php/7.2/fpm/pool.d/mapas.conf com o conteúdo abaixo: Muita atenção aqui, pois você precisará subistituir "meu.dominio.gov.br" pelo seu domínio ou IP fixo dependendo de qual for o seu caso.
+  #### Configurações pool do php7.2-fpm: Crie o arquivo ```/etc/php/7.2/fpm/pool.d/mapas.conf```. Muita atenção na alteração da linha ```listen = /var/run/php/php7.2-fpm-meu.dominio.gov.br.sock``` pois o nome do arquivo .sock precisará ser extamente como foi configurado do arquivo ```/etc/nginx/sites-available/mapas.conf```. O diretório ```/var/run/php/``` podrá mudar dependendo da versão que estiver trabalhando. 
   
   ```
   ubuntu@server# sudo vi /etc/php/7.2/fpm/pool.d/mapas.conf
