@@ -166,8 +166,40 @@ _Essa máquina foi criada apenas para efetuarmos testes iniciais e fazer a prime
   ```
   ubuntu@server# sudo -u postgres createdb --owner mapas mapas
   ```
+  #### Criar as extensões necessárias no banco
   
+  ```
+  ubuntu@server# sudo -u postgres psql -d mapas -c "CREATE EXTENSION postgis;"
+  ubuntu@server# sudo -u postgres psql -d mapas -c "CREATE EXTENSION unaccent;"
+  ```
   
+  #### Volte a "logar" com o usuário criado e importar o esquema da base de dados
   
+  ```
+  ubuntu@server# sudo su - mapas
+  mapas@server$ psql -f mapasculturais/db/schema.sql
+  ```
+# 4. Configurações de instalação
   
+  #### Primeiro crie um arquivo de configuração copiando o arquivo de template de configuração. Este arquivo está preparado para funcionar com este guia, utilizando o método de autenticação Fake.
   
+  ```
+  mapas@server$ cp mapasculturais/src/protected/application/conf/config.template.php mapasculturais/src/protected/application/conf/config.php
+  ```
+  
+  #### Criando diretórios de log, files e estilo
+  
+  ```
+  $ exit
+  ubuntu@server# sudo mkdir /var/log/mapasculturais
+  ubuntu@server# sudo chown mapas:www-data /var/log/mapasculturais
+  ```
+  
+  #### Com o usuário criado, crie a pasta para os assets, para os uploads e para os uploads privados (arquivos protegidos, como anexos de inscrições em oportunidades):
+  
+  ```
+  ubuntu@server# sudo su - mapas
+  mapas@server$ mkdir mapasculturais/src/assets
+  mapas@server$ mkdir mapasculturais/src/files
+  mapas@server$ mkdir mapasculturais/private-files
+  ```
