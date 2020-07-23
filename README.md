@@ -421,5 +421,4 @@ _A partir deste momento sua aplicação estará disponível para acesso utilizan
   
   
   
-_Em uma das máquinas que fiz a instalação precisei reiniciar o serivdor inteiro para que o NGINX funcione corretamente.
-A configuração do SSL foi feita com base no seguinte [artigo](https://www.digitalocean.com/community/tutorials/como-proteger-o-nginx-com-o-let-s-encrypt-no-ubuntu-18-04-pt).
+_Em uma das máquinas que fiz a instalação precisei reiniciar o serivdor inteiro para que o NGINX funcione corretamente. A configuração do SSL foi feita com base no seguinte [artigo](https://www.digitalocean.com/community/tutorials/como-proteger-o-nginx-com-o-let-s-encrypt-no-ubuntu-18-04-pt)._
