@@ -419,10 +419,12 @@ _Em uma das máquinas que fiz a instalação precisei reiniciar o serivdor intei
 
 # Autenticação - MultipleLocalAuth
 
-  _Após a instalção do Mapa Cultural teremos várias possibilidades para autenticação, mas iremos abordar aqui apenas a autenticação utilizando MultipleLocalAuth que dará ao usuário a possibilidade de fazer a autenticação utilizando contas do Locais, Gooogle, Facebook e afins, após os procedimentos abaixo iremos sair do modo de Autenticação Fake. Para isso iremos utilizar as informações já disponibilidas neste [repositório](https://github.com/secultce/MultipleLocalAuth)_
+  _Após a instalção do Mapa Cultural teremos várias possibilidades para autenticação, mas iremos abordar aqui apenas a autenticação utilizando MultipleLocalAuth que dará ao usuário a possibilidade de fazer a autenticação utilizando contas Locais, Gooogle, Facebook e afins. 
+  Após os procedimentos descritos abaixo iremos sair do modo de 'Autenticação Fake'. 
+  Para isso iremos utilizar as informações já disponibilidas no repositório [MultipleLocalAuth](https://github.com/secultce/MultipleLocalAuth) e adicionar alguns detalhes com o objetivo de facilitar a implementação_
   
   
-  #### Clonando o repositório
+  #### Clonando o repositório, iremos acessar a pasta ```plugins``` do nosso projeto utilizando o usuário mapas
   
   ```
   ubuntu@server# sudo su - mapas
@@ -439,13 +441,13 @@ _Em uma das máquinas que fiz a instalação precisei reiniciar o serivdor intei
   mapas@server$
   ```
   
-  ##### Faça a edição do arquivo de configuração do mapas utilizando vi ou o editor de sua preferência.
+  ##### Agora, Faça a edição do arquivo de configuração do mapas utilizando vi ou o editor de sua preferência.
   
   ```
   ubuntu@server# sudo vi /srv/mapas/mapasculturais/src/protected/application/conf/config.php
   ```
   
-  _Nessa etapa teremos três partes_
+  _Neste momento teremos três etapas_
   
   1- Ativar o plugin
   2- Configurar MultipleLocalAuth como seu Provider de autenticação
@@ -463,6 +465,7 @@ _Em uma das máquinas que fiz a instalação precisei reiniciar o serivdor intei
       ],
   ],
   ```
+  _Nota: A linha acima ficará dentro do array de configurações do arquivo ```config.php``` que estamos editando neste momento._
   
   ### 2- Configurar MultipleLocalAuth como seu Provider de autenticação
   
@@ -513,6 +516,6 @@ _Em uma das máquinas que fiz a instalação precisei reiniciar o serivdor intei
   _Nota: Em nosso projeto utilizamos apenas a autenticação Padrão e Google, portanto foi necessário gerar as chaves utilizando a ferramenta [Google Console Developers](https://console.developers.google.com/apis/credentials), após gerar as chaves basta adiciona-las na configurações citadas acima._  
   
   
-  ##### Após o procedimento você deverá ser capaz de acessar a página de autenticação utilizando MultipleLocalAuth
+  ##### Prontinho!! Após o procedimento você deverá ser capaz de acessar a página de autenticação utilizando MultipleLocalAuth
   
   
