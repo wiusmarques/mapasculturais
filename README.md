@@ -416,3 +416,103 @@ _A partir deste momento sua aplicação estará disponível para acesso utilizan
   
   
 _Em uma das máquinas que fiz a instalação precisei reiniciar o serivdor inteiro para que o NGINX funcione corretamente. A configuração do SSL foi feita com base no seguinte [artigo](https://www.digitalocean.com/community/tutorials/como-proteger-o-nginx-com-o-let-s-encrypt-no-ubuntu-18-04-pt)._
+
+# Autenticação - MultipleLocalAuth
+
+  _Após a instalção do Mapa Cultural teremos várias possibilidades para autenticação, mas iremos abordar aqui apenas a autenticação utilizando MultipleLocalAuth que dará ao usuário a possibilidade de fazer a autenticação utilizando contas do Locais, Gooogle, Facebook e afins, após os procedimentos abaixo iremos sair do modo de Autenticação Fake. Para isso iremos utilizar as informações já disponibilidas neste [repositório](https://github.com/secultce/MultipleLocalAuth)_
+  
+  
+  #### Clonando o repositório
+  
+  ```
+  ubuntu@server# sudo su - mapas
+  mapas@server$ cd mapasculturais/src/protected/application/plugins
+  mapas@server$ pwd
+    output: /srv/mapas/mapasculturais/src/protected/application/plugins
+  ```
+  
+  #### Após nos certificarmos de que estamos no diretório correto iremos clonar o repositório MultipleLocalAuth
+  
+  ```
+  mapas@server$ git clone https://github.com/secultce/MultipleLocalAuth.git
+  mapas@server$ exit
+  mapas@server$
+  ```
+  
+  ##### Faça a edição do arquivo de configuração do mapas utilizando vi ou o editor de sua preferência.
+  
+  ```
+  ubuntu@server# sudo vi /srv/mapas/mapasculturais/src/protected/application/conf/config.php
+  ```
+  
+  _Nessa etapa teremos três partes_
+  
+  1- Ativar o plugin
+  2- Configurar MultipleLocalAuth como seu Provider de autenticação
+  3- Configurar as chaves das redes sociais
+  
+  ### 1- Ativar o plugin
+  
+  ##### Ainda com o arquivo ```config.php``` aberto adicione a seguinte configuração: 
+  
+  ```
+  'plugins' => [
+      // ... outros plugins
+      'MultipleLocalAuth' => [
+          'namespace' => 'MultipleLocalAuth',
+      ],
+  ],
+  ```
+  
+  ### 2- Configurar MultipleLocalAuth como seu Provider de autenticação
+  
+  ##### Procure a linha com o código 
+  
+  ```'auth.provider' => 'Fake'```, 
+  
+  #### comente e adicione uma nova ou altere para 
+  
+  ```'auth.provider' => '\MultipleLocalAuth\Provider'```
+  
+  ### 3- Configurar as chaves das redes sociais
+  
+  ##### Defina a configuração auth.config para definir as estratégias utilizadas e as chaves dos serviços:
+  
+  ```
+  'auth.config' => array(
+    'salt' => 'LT_SECURITY_SALT_SECURITY_SALT_SECURITY_SALT_SECURITY_SALT_SECU',
+     'timeout' => '24 hours',
+      'strategies' => [
+         'Facebook' => array(
+           'app_id' => 'SUA_APP_ID',
+           'app_secret' => 'SUA_APP_SECRET', 
+           'scope' => 'email'
+         ),
+
+        'LinkedIn' => array(
+          'api_key' => 'SUA_API_KEY',
+          'secret_key' => 'SUA_SECRET_KEY',
+          'redirect_uri' => URL_DO_SEU_SITE . '/autenticacao/linkedin/oauth2callback',
+          'scope' => 'r_emailaddress'
+        ),
+        'Google' => array(
+          'client_id' => 'SEU_CLIENT_ID',
+          'client_secret' => 'SEU_CLIENT_SECRET',
+          'redirect_uri' => URL_DO_SEU_SITE . '/autenticacao/google/oauth2callback',
+          'scope' => 'email'
+        ),
+        'Twitter' => array(
+            'app_id' => 'SUA_APP_ID', 
+            'app_secret' => 'SUA_APP_SECRET', 
+        ),
+
+      ]
+  ),
+  ```
+  
+  _Nota: Em nosso projeto utilizamos apenas a autenticação Padrão e Google, portanto foi necessário gerar as chaves utilizando a ferramenta [Google Console Developers](https://console.developers.google.com/apis/credentials), após gerar as chaves basta adiciona-las na configurações citadas acima._  
+  
+  
+  ##### Após o procedimento você deverá ser capaz de acessar a página de autenticação utilizando MultipleLocalAuth
+  
+  
