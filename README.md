@@ -358,7 +358,7 @@ _A partir deste momento sua aplicação estará disponível para acesso utilizan
   set $site_name meu.dominio.gov.br;
   server_name  meu.dominio.gov.br;
   server_name meu.dominio.gov.br;
-  return 301 $scheme://mapas.siapp.one$request_uri;
+  return 301 $scheme://meu.dominio.gov.br$request_uri;
   ```
   
   #### Depois de conferir o arquivo, saia do seu editor, e verifique a sintaxe da edição da sua configuração:
