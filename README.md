@@ -401,7 +401,7 @@ _A partir deste momento sua aplicação estará disponível para acesso utilizan
   
   ```
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  Congratulations! You have successfully enabled https://mapas.siapp.one
+  Congratulations! You have successfully enabled https://meu.dominio.gov.br
 
   You should test your configuration at:
   (...)
